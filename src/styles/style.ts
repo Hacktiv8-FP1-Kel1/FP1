@@ -25,4 +25,4 @@ const stitches = createStitches({
   },
 });
 
-export const { css } = stitches;
+export const { css, theme, globalCss } = stitches;
