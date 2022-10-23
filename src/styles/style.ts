@@ -8,7 +8,8 @@ const stitches = createStitches({
       primary2: "#3F0071",
       primary3: "#FB2576",
 
-      white: "#FFFFFF",
+      white0: "#FFFFFF",
+      white1: "#DEDEDE",
     },
     fontWeights: {
       regular: 400,

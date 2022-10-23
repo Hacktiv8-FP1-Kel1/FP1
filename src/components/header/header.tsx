@@ -2,11 +2,14 @@ import * as React from "react";
 import { css, theme } from "../../styles/style";
 import { Link } from "react-router-dom";
 import { useGetHeaderList } from "./data-header";
+import SearchInput from "../elements/search-input";
+import Button from "../elements/button";
+import { useNavigate } from "react-router-dom";
 
 interface Props {
   name: string;
   link: string;
-  labelStyle?: any;
+  labelStyle?: React.CSSProperties;
 }
 
 function ItemComponent(props: Props) {
@@ -22,6 +25,12 @@ function ItemComponent(props: Props) {
 
 export function Header() {
   const { headerLists } = useGetHeaderList();
+  const navigate = useNavigate();
+  const [search, setSearch] = React.useState("");
+  const onHandleSearch = React.useCallback(() => {
+    navigate(`search/${search}`);
+  }, [navigate, search]);
+
   return (
     <div className={styles.navContainer()}>
       <div className={styles.navItemContainer()}>
@@ -29,6 +38,11 @@ export function Header() {
         {headerLists.map((item) => (
           <ItemComponent name={item.name} link={item.link} key={item.name} />
         ))}
+      </div>
+      <div className={styles.flexRow()}>
+        <SearchInput placeholder={"Search..."} setSearch={setSearch} />
+        <div className={styles.ml10()} />
+        <Button onSubmit={onHandleSearch} title={"Find News"} />
       </div>
     </div>
   );
@@ -44,8 +58,9 @@ const styles = {
     alignItems: "center",
     paddingLeft: 20,
     paddingRight: 20,
-    color: "white",
+    color: theme.colors.white0,
     backgroundColor: theme.colors.primary0,
+    fontSize: "$body3",
     height: 60,
     position: "sticky",
     top: 0,
@@ -57,9 +72,16 @@ const styles = {
     justifyContent: "space-between",
   }),
   navItemStyle: css({
-    color: "#DEDEDE",
+    color: theme.colors.white1,
     cursor: "pointer",
     marginLeft: 24,
+  }),
+  ml10: css({
+    marginLeft: 10,
+  }),
+  flexRow: css({
+    flexDirection: "row",
+    display: "flex",
   }),
 };
 
