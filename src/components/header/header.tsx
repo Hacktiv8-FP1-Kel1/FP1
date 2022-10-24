@@ -82,6 +82,7 @@ const styles = {
   flexRow: css({
     flexDirection: "row",
     display: "flex",
+    alignItems: "center",
   }),
 };
 

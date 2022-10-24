@@ -19,8 +19,8 @@ const styles = {
   button: css({
     backgroundColor: "$primary1",
     color: "$white1",
-    fontSize: "$body4",
-    padding: "12px 16px 12px 16px",
+    fontSize: "$body5",
+    padding: "8px 16px 8px 16px",
     borderRadius: 8,
     border: "0.5px solid white",
     cursor: "pointer",

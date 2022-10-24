@@ -7,6 +7,7 @@ const stitches = createStitches({
       primary1: "#150050",
       primary2: "#3F0071",
       primary3: "#FB2576",
+      primary4: "#2F80ED",
 
       white0: "#FFFFFF",
       white1: "#DEDEDE",
