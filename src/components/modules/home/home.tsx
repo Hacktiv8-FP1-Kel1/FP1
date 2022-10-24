@@ -1,6 +1,7 @@
 import * as React from "react";
 import { useGetNews, StateType } from "../../../api-hooks/news/news.query";
 import { css } from "../../../styles/style";
+import { Card } from "../../elements/card";
 import Container from "../../elements/container";
 import Title from "../../elements/title";
 
@@ -9,9 +10,12 @@ interface Props {}
 export const HOME_PAGE_ROUTE = "/";
 export default function Home(props: Props) {
   const { loading, news } = useGetNews({
-    query: "indonesia",
+    query: "",
     language: StateType.id,
+    country: StateType.id,
   });
+
+  console.log(news?.articles);
 
   return (
     <Container>
@@ -29,11 +33,7 @@ export default function Home(props: Props) {
           }}
         >
           {news?.articles.map((item) => {
-            return (
-              <div className={styles.cardContainer()}>
-                <div className={styles.sourceStyle()}>{item.source.name}</div>
-              </div>
-            );
+            return <Card data={item} />;
           })}
         </div>
       </div>
