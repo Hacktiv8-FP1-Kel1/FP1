@@ -10,6 +10,12 @@ const stitches = createStitches({
 
       white0: "#FFFFFF",
       white1: "#DEDEDE",
+
+      gray1: "#333333",
+      gray2: "#828282",
+      gray3: "#BDBDBD",
+      gray4: "#E0E0E0",
+      gray5: "#F2F2F2",
     },
     fontWeights: {
       regular: 400,
@@ -17,11 +23,11 @@ const stitches = createStitches({
       bold: 700,
     },
     fontSizes: {
-      body1: 24,
-      body2: 22,
-      body3: 20,
-      body4: 18,
-      body5: 16,
+      body1: "24px",
+      body2: "22px",
+      body3: "20px",
+      body4: "18px",
+      body5: "16px",
     },
   },
 });

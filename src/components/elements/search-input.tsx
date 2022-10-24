@@ -28,9 +28,9 @@ export default function SearchInput(props: Props) {
 
 const styles = {
   container: css({
-    fontSize: "$body3",
+    fontSize: "$body4",
     fontFamily: "Nunito",
-    padding: "12px 16px 12px 16px",
+    padding: "8px 16px 8px 16px",
     borderRadius: 8,
     border: "none",
   }),

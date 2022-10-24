@@ -5,6 +5,7 @@ export const resetStyles = globalCss({
   body: {
     margin: "0",
     fontFamily: "Nunito",
+    fontSize: "$body5",
     WebkitFontSmoothing: "antialiased",
     MozOsxFontSmoothing: "grayscale",
     lineHeight: 1,
