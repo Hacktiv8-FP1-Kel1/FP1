@@ -1,13 +1,17 @@
 import { Article } from "../../api-hooks/news/news.model";
 import { css } from "../../styles/style";
 import { BsFillPersonFill, BsFillArrowRightCircleFill } from "react-icons/bs";
+import { useSelector, useDispatch } from "react-redux";
 import Button from "./button";
+import { ListReducers } from "../../redux/store";
 
 interface Props {
   data: Article;
 }
 
 export function Card(props: Props) {
+  const savedState = useSelector((state: ListReducers) => state.saved);
+  const dispatch = useDispatch();
   const { data } = props;
 
   return (
