@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { useGetHeaderList } from "./data-header";
 import SearchInput from "../elements/search-input";
 import Button from "../elements/button";
+
 import { useNavigate } from "react-router-dom";
 
 interface Props {
@@ -24,11 +25,15 @@ function ItemComponent(props: Props) {
 }
 
 export function Header() {
+  const [search, setSearch] = React.useState("");
   const { headerLists } = useGetHeaderList();
   const navigate = useNavigate();
-  const [search, setSearch] = React.useState("");
   const onHandleSearch = React.useCallback(() => {
-    navigate(`search/${search}`);
+    if (search) {
+      navigate(`search/${search}`);
+    } else {
+      navigate(`/`);
+    }
   }, [navigate, search]);
 
   return (

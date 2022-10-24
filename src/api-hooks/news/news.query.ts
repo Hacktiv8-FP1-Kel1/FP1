@@ -10,6 +10,7 @@ interface Props {
   language: StateType;
   lastMonth?: boolean;
   country?: StateType;
+  refetch?: boolean;
 }
 export const useGetEverythingNews = (props: Props) => {
   const apiKey = "a9225c8873af4994b674911be605fc3c";
@@ -18,6 +19,7 @@ export const useGetEverythingNews = (props: Props) => {
     language,
     lastMonth = false,
     country = StateType.id,
+    refetch = false,
   } = props;
   const [news, setNews] = React.useState<News>();
   const [loading, setLoading] = React.useState<boolean>(false);
@@ -37,7 +39,7 @@ export const useGetEverythingNews = (props: Props) => {
     `;
 
   React.useEffect(() => {
-    if (!news) {
+    const fetchData = async () => {
       setLoading(true);
       fetch(fetchQuery)
         .then((res) => {
@@ -47,8 +49,10 @@ export const useGetEverythingNews = (props: Props) => {
         .catch((err) => {
           console.log(err);
         });
-    }
-  }, [fetchQuery, news]);
+    };
+
+    fetchData();
+  }, [fetchQuery]);
 
   return { news, loading };
 };
@@ -79,7 +83,7 @@ export const useGetNews = (props: Props) => {
     `;
 
   React.useEffect(() => {
-    if (!news) {
+    const fetchData = async () => {
       setLoading(true);
       fetch(fetchQuery)
         .then((res) => {
@@ -89,8 +93,11 @@ export const useGetNews = (props: Props) => {
         .catch((err) => {
           console.log(err);
         });
-    }
-  }, [fetchQuery, news]);
+    };
+    console.log("a");
+
+    fetchData();
+  }, [fetchQuery]);
 
   return { news, loading };
 };
