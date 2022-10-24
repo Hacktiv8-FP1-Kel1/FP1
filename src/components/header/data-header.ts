@@ -13,7 +13,7 @@ export const useGetHeaderList = () => {
     },
     {
       name: "COVID-19",
-      link: "/covid-19",
+      link: "/covid",
     },
     {
       name: "Saved",

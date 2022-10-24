@@ -1,5 +1,9 @@
 import * as React from "react";
-import { useGetNews, StateType } from "../../../api-hooks/news/news.query";
+import {
+  useGetNews,
+  StateType,
+  useGetEverythingNews,
+} from "../../../api-hooks/news/news.query";
 import { css } from "../../../styles/style";
 import { Card } from "../../elements/card";
 import Container from "../../elements/container";
@@ -7,29 +11,21 @@ import Title from "../../elements/title";
 
 interface Props {}
 
-export const HOME_PAGE_ROUTE = "/";
-export default function Home(props: Props) {
-  const { loading, news } = useGetNews({
-    query: "",
-    language: StateType.id,
-    country: StateType.id,
+export const PROGRAMMING_PAGE_ROUTE = "/programming";
+export default function Programming(props: Props) {
+  const { loading, news } = useGetEverythingNews({
+    query: "programming",
+    lastMonth: true,
+    language: StateType.en,
   });
 
   return (
     <Container>
       <div className={styles.container()}>
         <div style={{ width: "100%", marginBottom: 20 }}>
-          <Title title="News" />
+          <Title title="Programming News" />
         </div>
-        <div
-          style={{
-            flexDirection: "row",
-            display: "flex",
-            flex: 1,
-            flexWrap: "wrap",
-            justifyContent: "space-between",
-          }}
-        >
+        <div className={styles.flexWrapCard()}>
           {news?.articles.map((item, idx) => {
             return <Card data={item} key={idx} />;
           })}
@@ -59,5 +55,12 @@ const styles = {
     flex: 1,
     justifyContent: "center",
     color: "$gray2",
+  }),
+  flexWrapCard: css({
+    flexDirection: "row",
+    display: "flex",
+    flex: 1,
+    flexWrap: "wrap",
+    justifyContent: "space-between",
   }),
 };
