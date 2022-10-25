@@ -35,7 +35,7 @@ export default function Saved(props: Props) {
               alt="empty"
               className={styles.emptyImageStyle()}
             />
-            {"Empty Saved News Here, Go Saved Article To Add Here"}
+            {"Empty Saved News Here, Go Save Some Article"}
           </div>
         )}
       </div>
