@@ -4,11 +4,18 @@ import { BsFillPersonFill, BsFillArrowRightCircleFill } from "react-icons/bs";
 import { useSelector, useDispatch } from "react-redux";
 import Button from "./button";
 import { ListReducers } from "../../redux/store";
+import placeholderImage from "../../assets/placeholder-image.jpeg";
 
 interface Props {
   data: Article;
 }
-
+export function CardLoading() {
+  return (
+    <div className={styles.cardLoadingContainer()}>
+      <div className={styles.imageStyleLoading()} />
+    </div>
+  );
+}
 export function Card(props: Props) {
   const savedState = useSelector((state: ListReducers) => state.saved);
   const dispatch = useDispatch();
@@ -16,47 +23,45 @@ export function Card(props: Props) {
 
   return (
     <>
-      {data.urlToImage && (
-        <div className={styles.cardContainer()}>
-          <div className={styles.columnFlex()}>
-            <img
-              src={data.urlToImage}
-              className={styles.imageStyle()}
-              alt="news"
-            />
-            <div style={{ flexDirection: "column", marginTop: 10 }}>
-              <div className={styles.rowFlexBetween()}>
-                <div className={styles.sourceStyle()}>{data.source.name}</div>
-                {data.author !== "-" && data.author && (
-                  <div className={styles.sourceStyle()}>
-                    <BsFillPersonFill style={{ marginRight: 4 }} />
-                    {data.author}
-                  </div>
-                )}
-              </div>
-              <div style={{ marginTop: 10 }} className={styles.titleStyle()}>
-                {data.title}
-              </div>
-              <div style={{ marginTop: 10 }} className={styles.descStyle()}>
-                {data.description}
-              </div>
+      <div className={styles.cardContainer()}>
+        <div className={styles.columnFlex()}>
+          <img
+            src={data?.urlToImage || placeholderImage}
+            className={styles.imageStyle()}
+            alt="news"
+          />
+          <div style={{ flexDirection: "column", marginTop: 10 }}>
+            <div className={styles.rowFlexBetween()}>
+              <div className={styles.sourceStyle()}>{data.source.name}</div>
+              {data.author !== "-" && data.author && (
+                <div className={styles.sourceStyle()}>
+                  <BsFillPersonFill style={{ marginRight: 4 }} />
+                  {data.author}
+                </div>
+              )}
+            </div>
+            <div style={{ marginTop: 10 }} className={styles.titleStyle()}>
+              {data.title}
+            </div>
+            <div style={{ marginTop: 10 }} className={styles.descStyle()}>
+              {data.description}
             </div>
           </div>
-          <div className={styles.footerCard()}>
-            <a
-              style={{ display: "flex", alignSelf: "center" }}
-              className={styles.buttonStyle()}
-              href={data.url}
-              target="_blank"
-              rel="noreferrer"
-            >
-              {"Read News"}
-              <BsFillArrowRightCircleFill style={{ marginLeft: 10 }} />
-            </a>
-            <Button onSubmit={() => {}} title={"Saved"} />
-          </div>
         </div>
-      )}
+        <div className={styles.footerCard()}>
+          <a
+            style={{ display: "flex", alignSelf: "center" }}
+            className={styles.buttonStyle()}
+            href={data.url}
+            target="_blank"
+            rel="noreferrer"
+          >
+            {"Read News"}
+            <BsFillArrowRightCircleFill style={{ marginLeft: 10 }} />
+          </a>
+          <Button onSubmit={() => {}} title={"Saved"} />
+        </div>
+      </div>
     </>
   );
 }
@@ -70,11 +75,10 @@ const styles = {
     borderWidth: "1px solid black",
   }),
   cardContainer: css({
-    marginBottom: 20,
     padding: "12px 12px 20px 12px",
-    width: "30%",
     alignItems: "center",
     display: "flex",
+    height: "100%",
     justifyContent: "space-between",
     flexDirection: "column",
     boxShadow:
@@ -123,5 +127,23 @@ const styles = {
     justifyContent: "space-between",
     marginTop: 20,
     width: "100%",
+  }),
+  cardLoadingContainer: css({
+    padding: "12px 12px 20px 12px",
+    alignItems: "center",
+    width: "100%",
+    height: 300,
+    backgroundColor: "$gray5",
+    boxShadow:
+      "rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset",
+    borderRadius: 8,
+  }),
+  imageStyleLoading: css({
+    width: "100%",
+    height: 200,
+    backgroundColor: "$gray4",
+    objectFit: "cover",
+    borderRadius: 8,
+    borderWidth: "1px solid black",
   }),
 };

@@ -5,10 +5,11 @@ import {
   useGetEverythingNews,
 } from "../../../api-hooks/news/news.query";
 import { css } from "../../../styles/style";
-import { Card } from "../../elements/card";
+import { Card, CardLoading } from "../../elements/card";
 import Container from "../../elements/container";
 import Title from "../../elements/title";
 import { useParams } from "react-router-dom";
+import CardList from "../../elements/card-list";
 
 interface Props {}
 
@@ -25,14 +26,10 @@ export default function Search(props: Props) {
   return (
     <Container>
       <div className={styles.container()}>
-        <div style={{ width: "100%", marginBottom: 20 }}>
+        <div className={styles.titleStyle()}>
           <Title title={`${q} News`} />
         </div>
-        <div className={styles.flexWrapCard()}>
-          {news?.articles.map((item, idx) => {
-            return <Card data={item} key={idx} />;
-          })}
-        </div>
+        <CardList loading={loading} news={news} />
       </div>
     </Container>
   );
@@ -44,26 +41,8 @@ const styles = {
     flexDirection: "column",
     flex: 1,
   }),
-  cardContainer: css({
+  titleStyle: css({
+    width: "100%",
     marginBottom: 20,
-    padding: "12px 12px 12px 12px",
-    width: "30%",
-    alignItems: "center",
-    justifyContent: "center",
-    border: "1px solid black",
-    borderRadius: 12,
-  }),
-  sourceStyle: css({
-    display: "flex",
-    flex: 1,
-    justifyContent: "center",
-    color: "$gray2",
-  }),
-  flexWrapCard: css({
-    flexDirection: "row",
-    display: "flex",
-    flex: 1,
-    flexWrap: "wrap",
-    justifyContent: "space-between",
   }),
 };
