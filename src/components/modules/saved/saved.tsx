@@ -2,7 +2,6 @@ import { css } from "../../../styles/style";
 import Container from "../../elements/container";
 import Title from "../../elements/title";
 import { useSelector } from "react-redux";
-import CardList from "../../elements/card-list";
 import { ListReducers } from "../../../redux/store";
 import { Card } from "../../elements/card";
 import EmptyView from "../../../assets/empty-view.jpeg";

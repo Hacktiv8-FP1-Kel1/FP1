@@ -82,21 +82,12 @@ export function Card(props: Props) {
             {"Read News"}
             <BsFillArrowRightCircleFill style={{ marginLeft: 10 }} />
           </a>
-          {isSaved ? (
-            <Button
-              onSubmit={() => {
-                handleOnClick("unsaved");
-              }}
-              title={"Unsaved"}
-            />
-          ) : (
-            <Button
-              onSubmit={() => {
-                handleOnClick("saved");
-              }}
-              title={"Saved"}
-            />
-          )}
+          <Button
+            onSubmit={() => {
+              isSaved ? handleOnClick("unsaved") : handleOnClick("saved");
+            }}
+            title={isSaved ? "Unsaved" : "Saved"}
+          />
         </div>
       </div>
     </>
