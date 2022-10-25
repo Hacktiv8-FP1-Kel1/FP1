@@ -1,10 +1,10 @@
 import { News } from "./news.model";
 import * as React from "react";
+
 export enum StateType {
   en = "en",
   id = "id",
 }
-
 interface Props {
   query?: string;
   language: StateType;
@@ -12,8 +12,10 @@ interface Props {
   country?: StateType;
   refetch?: boolean;
 }
+
 export const useGetEverythingNews = (props: Props) => {
-  const apiKey = "a9225c8873af4994b674911be605fc3c";
+  const apiKey = process.env.REACT_APP_API_KEY;
+  console.log(apiKey);
   const {
     query = "",
     language,
@@ -58,7 +60,7 @@ export const useGetEverythingNews = (props: Props) => {
 };
 
 export const useGetNews = (props: Props) => {
-  const apiKey = "a9225c8873af4994b674911be605fc3c";
+  const apiKey = process.env.REACT_APP_API_KEY;
   const {
     query = "",
     language,
