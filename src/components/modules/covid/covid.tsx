@@ -42,4 +42,4 @@ const styles = {
     width: "100%",
     marginBottom: 20,
   }),
-  
+};

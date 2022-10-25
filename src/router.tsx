@@ -7,7 +7,7 @@ import Programming, {
 } from "./components/modules/programming/programming";
 import Covid, { COVID_PAGE_ROUTE } from "./components/modules/covid/covid";
 import Search, { SEARCH_PAGE_ROUTE } from "./components/modules/search/search";
-import * as React from "react";
+import Saved, { SAVED_PAGE_ROUTE } from "./components/modules/saved/saved";
 
 export default function Router() {
   return (
@@ -18,6 +18,7 @@ export default function Router() {
         <Route element={<Programming />} path={PROGRAMMING_PAGE_ROUTE} />
         <Route element={<Covid />} path={COVID_PAGE_ROUTE} />
         <Route element={<Search />} path={SEARCH_PAGE_ROUTE} />
+        <Route element={<Saved />} path={SAVED_PAGE_ROUTE} />
       </Routes>
     </BrowserRouter>
   );

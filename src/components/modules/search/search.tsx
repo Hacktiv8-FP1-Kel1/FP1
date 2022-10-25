@@ -1,11 +1,8 @@
-import * as React from "react";
 import {
-  useGetNews,
   StateType,
   useGetEverythingNews,
 } from "../../../api-hooks/news/news.query";
 import { css } from "../../../styles/style";
-import { Card, CardLoading } from "../../elements/card";
 import Container from "../../elements/container";
 import Title from "../../elements/title";
 import { useParams } from "react-router-dom";

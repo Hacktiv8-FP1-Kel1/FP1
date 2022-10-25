@@ -5,6 +5,9 @@ import { useSelector, useDispatch } from "react-redux";
 import Button from "./button";
 import { ListReducers } from "../../redux/store";
 import placeholderImage from "../../assets/placeholder-image.jpeg";
+import * as React from "react";
+import { deleteArticle, saveArticle } from "../../redux/reducers/savedSlice";
+import { toast } from "react-toastify";
 
 interface Props {
   data: Article;
@@ -20,6 +23,26 @@ export function Card(props: Props) {
   const savedState = useSelector((state: ListReducers) => state.saved);
   const dispatch = useDispatch();
   const { data } = props;
+  const handleOnClick = React.useCallback(
+    (type: string) => {
+      if (type === "saved") {
+        dispatch(saveArticle(data));
+        toast.success("Success Saved This Article", {
+          position: toast.POSITION.TOP_CENTER,
+        });
+      } else {
+        dispatch(deleteArticle(data));
+        toast.info("Success Unsaved This Article", {
+          position: toast.POSITION.TOP_CENTER,
+        });
+      }
+    },
+    [data, dispatch]
+  );
+  const isSaved =
+    savedState.savedArticles.findIndex((item) => item.url === data.url) > -1
+      ? true
+      : false;
 
   return (
     <>
@@ -59,7 +82,21 @@ export function Card(props: Props) {
             {"Read News"}
             <BsFillArrowRightCircleFill style={{ marginLeft: 10 }} />
           </a>
-          <Button onSubmit={() => {}} title={"Saved"} />
+          {isSaved ? (
+            <Button
+              onSubmit={() => {
+                handleOnClick("unsaved");
+              }}
+              title={"Unsaved"}
+            />
+          ) : (
+            <Button
+              onSubmit={() => {
+                handleOnClick("saved");
+              }}
+              title={"Saved"}
+            />
+          )}
         </div>
       </div>
     </>

@@ -13,12 +13,12 @@ const savedSlice = createSlice({
   name: "saved",
   initialState,
   reducers: {
-    save: (state, action: PayloadAction<Article>) => {
+    saveArticle: (state, action: PayloadAction<Article>) => {
       state.savedArticles.push(action.payload);
     },
-    delete: (state, action: PayloadAction<Article>) => {
+    deleteArticle: (state, action: PayloadAction<Article>) => {
       const findArrayIndex = state.savedArticles.findIndex(
-        (item) => item.title === action.payload.title
+        (item) => item.url === action.payload.url
       );
       if (findArrayIndex > -1) {
         state.savedArticles.splice(findArrayIndex, 1);
@@ -26,5 +26,7 @@ const savedSlice = createSlice({
     },
   },
 });
+
+export const { saveArticle, deleteArticle } = savedSlice.actions;
 
 export default savedSlice.reducer;

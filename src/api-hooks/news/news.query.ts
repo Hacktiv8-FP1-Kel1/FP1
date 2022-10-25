@@ -94,7 +94,6 @@ export const useGetNews = (props: Props) => {
           console.log(err);
         });
     };
-    console.log("a");
 
     fetchData();
   }, [fetchQuery]);
