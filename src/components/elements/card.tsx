@@ -1,5 +1,5 @@
 import { Article } from "../../api-hooks/news/news.model";
-import { css } from "../../styles/style";
+import { css, theme } from "../../styles/style";
 import { BsFillPersonFill, BsFillArrowRightCircleFill } from "react-icons/bs";
 import { useSelector, useDispatch } from "react-redux";
 import Button from "./button";
@@ -8,6 +8,7 @@ import placeholderImage from "../../assets/placeholder-image.jpeg";
 import * as React from "react";
 import { deleteArticle, saveArticle } from "../../redux/reducers/savedSlice";
 import { toast } from "react-toastify";
+import { AiOutlineStar, AiFillStar } from "react-icons/ai";
 
 interface Props {
   data: Article;
@@ -82,12 +83,23 @@ export function Card(props: Props) {
             {"Read News"}
             <BsFillArrowRightCircleFill style={{ marginLeft: 10 }} />
           </a>
-          <Button
+          <div
+            onClick={() => {
+              isSaved ? handleOnClick("unsaved") : handleOnClick("saved");
+            }}
+          >
+            {isSaved ? (
+              <AiFillStar className={styles.styleStar()} color={"#3F0071"} />
+            ) : (
+              <AiOutlineStar className={styles.styleStar()} color={"#3F0071"} />
+            )}
+          </div>
+          {/* <Button
             onSubmit={() => {
               isSaved ? handleOnClick("unsaved") : handleOnClick("saved");
             }}
             title={isSaved ? "Unsaved" : "Saved"}
-          />
+          /> */}
         </div>
       </div>
     </>
@@ -173,5 +185,12 @@ const styles = {
     objectFit: "cover",
     borderRadius: 8,
     borderWidth: "1px solid black",
+  }),
+  styleStar: css({
+    width: 30,
+    height: 30,
+    "&:hover": {
+      transform: "scale(1.5)",
+    },
   }),
 };

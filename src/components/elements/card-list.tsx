@@ -40,7 +40,7 @@ const styles = {
   cardSpace: css({
     paddingLeft: 20,
     paddingRight: 20,
-    width: "33%",
+    width: "33.3%",
     marginBottom: 50,
   }),
   cardContainer: css({
