@@ -12,7 +12,7 @@ interface Props {}
 export const PROGRAMMING_PAGE_ROUTE = "/programming";
 export default function Programming(props: Props) {
   const { loading, news } = useGetNews({
-    query: "covid-19",
+    query: "programming",
     lastMonth: true,
     language: StateType.en,
     everything: true,

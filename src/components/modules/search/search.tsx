@@ -12,7 +12,7 @@ export const SEARCH_PAGE_ROUTE = "/search/:q";
 export default function Search(props: Props) {
   const { q } = useParams();
   const { loading, news } = useGetNews({
-    query: "covid-19",
+    query: q,
     lastMonth: true,
     language: StateType.en,
     everything: true,

@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { News } from "../../api-hooks/news/news.model";
+import axios from "axios";
 
 export enum StateType {
   en = "en",
@@ -11,7 +12,6 @@ export interface NewsProps {
   language: StateType;
   lastMonth?: boolean;
   country?: StateType;
-  refetch?: boolean;
   everything?: boolean;
 }
 
@@ -55,13 +55,11 @@ function fetchNews(props: NewsProps) {
   return fetchQuery;
 }
 
-export const getNewsApi = createAsyncThunk("", async (props: NewsProps) => {
+export const getNewsApi = createAsyncThunk("news", async (props: NewsProps) => {
   try {
-    const res = await fetch(fetchNews(props)).then((res) => {
-      res.json().then((data) => data);
-    });
-
-    // return res;
+    // console.log(fetchNews(props));
+    const res = await axios.get(fetchNews(props));
+    return res.data;
   } catch (err) {
     return err;
   }
@@ -81,7 +79,7 @@ const initialState: NewsState = {
 
 const newsSlice = createSlice({
   name: "news",
-  initialState,
+  initialState: initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(getNewsApi.pending, (state) => {
@@ -89,7 +87,7 @@ const newsSlice = createSlice({
     });
     builder.addCase(getNewsApi.fulfilled, (state, action) => {
       const data = action.payload as News;
-      return { news: data, loading: false, error: false };
+      return { ...state, news: data, loading: false, error: false };
     });
     builder.addCase(getNewsApi.rejected, (state, action) => {
       return { ...state, loading: false, error: true };
