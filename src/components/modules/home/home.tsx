@@ -1,5 +1,6 @@
 import * as React from "react";
-import { useGetNews, StateType } from "../../../api-hooks/news/news.query";
+import useGetNews from "../../../api-hooks/news/news.query";
+import { StateType } from "../../../redux/reducers/newsSlice";
 import { css } from "../../../styles/style";
 import { Card, CardLoading } from "../../elements/card";
 import CardList from "../../elements/card-list";

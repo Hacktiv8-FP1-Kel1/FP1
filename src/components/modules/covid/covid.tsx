@@ -1,9 +1,6 @@
 import * as React from "react";
-import {
-  useGetNews,
-  StateType,
-  useGetEverythingNews,
-} from "../../../api-hooks/news/news.query";
+import useGetNews from "../../../api-hooks/news/news.query";
+import { StateType } from "../../../redux/reducers/newsSlice";
 import { css } from "../../../styles/style";
 import { Card, CardLoading } from "../../elements/card";
 import CardList from "../../elements/card-list";
@@ -14,10 +11,11 @@ interface Props {}
 
 export const COVID_PAGE_ROUTE = "/covid";
 export default function Covid(props: Props) {
-  const { loading, news } = useGetEverythingNews({
+  const { loading, news } = useGetNews({
     query: "covid-19",
     lastMonth: true,
     language: StateType.en,
+    everything: true,
   });
 
   return (

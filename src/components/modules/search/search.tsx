@@ -1,25 +1,22 @@
-import {
-  StateType,
-  useGetEverythingNews,
-} from "../../../api-hooks/news/news.query";
+import useGetNews from "../../../api-hooks/news/news.query";
 import { css } from "../../../styles/style";
 import Container from "../../elements/container";
 import Title from "../../elements/title";
 import { useParams } from "react-router-dom";
 import CardList from "../../elements/card-list";
+import { StateType } from "../../../redux/reducers/newsSlice";
 
 interface Props {}
 
 export const SEARCH_PAGE_ROUTE = "/search/:q";
 export default function Search(props: Props) {
   const { q } = useParams();
-  const { loading, news } = useGetEverythingNews({
-    query: q,
+  const { loading, news } = useGetNews({
+    query: "covid-19",
     lastMonth: true,
     language: StateType.en,
-    refetch: true,
+    everything: true,
   });
-
   return (
     <Container>
       <div className={styles.container()}>
